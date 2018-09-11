@@ -20,7 +20,9 @@ module.exports = function(app){
         for (var i = 0; i < friends.length; i++){
             var diff = 0;
             for (var j = 0; j < userResponses.length; j++){
-                diff += Math.abs(friends[i].score[j] - userResponses[j]);
+                
+                diff += Math.abs(friends[i].scores[j] - req.body.scores[j]);
+
             }
 
             if (diff < totalDifference){
@@ -30,7 +32,9 @@ module.exports = function(app){
             }
         }
         friends.push(userInput);
+        console.log(matchName);
+        console.log(matchImage);
 
-        res.json({status: "OK", matchNAME: matchNAME, matchImage: matchImage});
+        res.json({status: "OK", matchName: matchName, matchImage: matchImage});
     });
 };
